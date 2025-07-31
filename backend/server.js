@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 const authRoutes = require("./routes/auth");
+const actorRoutes = require("./routes/actors");
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World from Apify Integration Server!" });
@@ -19,6 +20,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/actors", actorRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
