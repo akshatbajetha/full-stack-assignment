@@ -53,7 +53,7 @@ router.get("/:actorId/input-schema", extractApiKey, async (req, res) => {
   }
 });
 
-router.post("/:actorId/run", extractApiKey, async (req, res) => {
+router.post("/:actorId/runs", extractApiKey, async (req, res) => {
   try {
     const actorId = req.params.actorId;
     const inputs = req.body;
