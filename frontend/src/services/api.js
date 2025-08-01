@@ -68,7 +68,7 @@ export const api = {
 
   executeActor: async (apiKey, actorId, inputs) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/actors/${actorId}/run`, {
+      const response = await fetch(`${API_BASE_URL}/actors/${actorId}/runs`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${apiKey}`,
@@ -89,10 +89,10 @@ export const api = {
     }
   },
 
-  getRunStatus: async (apiKey, runId) => {
+  getRunStatus: async (apiKey, actorId, runId) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/actors/runs/${runId}/status`,
+        `${API_BASE_URL}/actors/${actorId}/runs/${runId}/status`,
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,
@@ -112,11 +112,12 @@ export const api = {
     }
   },
 
-  getRunResults: async (apiKey, runId) => {
+  getRunResults: async (apiKey, actorId, runId) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/actors/runs/${runId}/results`,
+        `${API_BASE_URL}/actors/${actorId}/runs/${runId}/results`,
         {
+          method: "GET",
           headers: {
             Authorization: `Bearer ${apiKey}`,
           },
@@ -124,6 +125,7 @@ export const api = {
       );
 
       const data = await response.json();
+      console.log("Results: ", data);
 
       if (!response.ok) {
         throw new Error(data.error?.message || "Failed to fetch run results");
