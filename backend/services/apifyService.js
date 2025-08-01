@@ -63,7 +63,6 @@ async function getActorInputSchema(apiKey, actorId) {
       }
     );
 
-    const actorInfo = response.data.info;
     const inputSchema = response.data.components?.schemas?.inputSchema;
 
     if (!inputSchema) {
@@ -71,8 +70,6 @@ async function getActorInputSchema(apiKey, actorId) {
     }
 
     return {
-      name: actorInfo.title,
-      description: actorInfo.description,
       inputSchema,
     };
   } catch (error) {
